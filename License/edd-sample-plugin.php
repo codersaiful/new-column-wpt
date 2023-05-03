@@ -5,7 +5,7 @@
  */
 
  define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_ITEM_ID', 134 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
@@ -149,7 +149,7 @@ function aaa_license_license_key_settings_field() {
  * @return void
  */
 function aaa_license_register_option() {
-	register_setting( 'aaa_license_license', 'aaa_license_license_key', 'edd_sanitize_license' );
+	register_setting( 'aaa_license_license', 'aaa_license_license_key', 'aaa_edd_sanitize_license' );
 }
 add_action( 'admin_init', 'aaa_license_register_option' );
 
@@ -159,7 +159,7 @@ add_action( 'admin_init', 'aaa_license_register_option' );
  * @param string  $new The license key.
  * @return string
  */
-function edd_sanitize_license( $new ) {
+function aaa_edd_sanitize_license( $new ) {
 	$old = get_option( 'aaa_license_license_key' );
 	if ( $old && $old !== $new ) {
 		delete_option( 'aaa_license_license_status' ); // new license has been entered, so must reactivate

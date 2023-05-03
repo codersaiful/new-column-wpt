@@ -95,7 +95,7 @@ class EDD_SL_Plugin_Updater {
 	public function check_update( $_transient_data ) {
 
 		global $pagenow;
-		var_dump($_transient_data);
+		// var_dump($_transient_data);
 		if ( ! is_object( $_transient_data ) ) {
 			$_transient_data = new stdClass();
 		}
@@ -105,6 +105,7 @@ class EDD_SL_Plugin_Updater {
 		}
 
 		$current = $this->get_repo_api_data();
+		// var_dump($current);
 		if ( false !== $current && is_object( $current ) && isset( $current->new_version ) ) {
 			if ( version_compare( $this->version, $current->new_version, '<' ) ) {
 				$_transient_data->response[ $this->name ] = $current;

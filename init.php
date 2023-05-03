@@ -23,7 +23,7 @@
 * @author Saiful Islam <codersaiful@gmail.com>
 */
 define( 'EDD_SAMPLE_ITEM__FILE__', __FILE__ );
-include_once 'autoloader.php';
+// include_once 'autoloader.php';
 include 'admin/admin-loader.php';
 
 include 'License/edd-sample-plugin.php';
