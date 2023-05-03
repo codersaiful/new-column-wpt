@@ -35,7 +35,7 @@ function aaaa_sl_sample_plugin_updater() {
 		EDD_SAMPLE_STORE_URL,
 		__FILE__,
 		array(
-			'version' => '1.0',                    // current version number
+			'version' => '1.0.0',                    // current version number
 			'license' => $license_key,             // license key (used get_option above to retrieve from DB)
 			'item_id' => EDD_SAMPLE_ITEM_ID,       // ID of the product
 			'author'  => 'Easy Digital Downloads', // author of this plugin
@@ -117,6 +117,7 @@ function aaa_license_license_key_settings_field() {
 	$license = get_option( 'aaa_license_license_key' );
 	$status  = get_option( 'aaa_license_license_status' );
 	$license_data  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA );
+	// $license_data_headers  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers' );
 	var_dump($license_data);
 	
 	?>
@@ -226,6 +227,8 @@ function aaa_license_activate_license() {
 
 		
 	
+
+		$license_data_headers = wp_remote_retrieve_headers($response);
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 		var_dump($license_data);
 		// var_dump($response);
@@ -293,6 +296,7 @@ function aaa_license_activate_license() {
 	}
 	update_option( 'aaa_license_license_status', $license_data->license );
 	update_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA, $license_data );
+	// update_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers', $license_data_headers );
 	wp_safe_redirect( admin_url( 'plugins.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
 	exit();
 }
