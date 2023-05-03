@@ -4,8 +4,8 @@
 * For further details please visit http://docs.easydigitaldownloads.com/article/383-automatic-upgrades-for-wordpress-plugins
  */
 
- define( 'EDD_SAMPLE_STORE_URL', 'https://codeastrology.com' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_ITEM_ID', 6553 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
@@ -33,7 +33,7 @@ function aaaa_sl_sample_plugin_updater() {
 	// setup the updater
 	$edd_updater = new EDD_SL_Plugin_Updater(
 		EDD_SAMPLE_STORE_URL,
-		__FILE__,
+		EDD_SAMPLE_ITEM__FILE__,//__FILE__,
 		array(
 			'version' => '1.0.0',                    // current version number
 			'license' => $license_key,             // license key (used get_option above to retrieve from DB)
@@ -42,8 +42,8 @@ function aaaa_sl_sample_plugin_updater() {
 			'beta'    => true,
 		)
 	);
-	// var_dump($edd_updater);
 
+	// var_dump($edd_updater);
 }
 add_action( 'init', 'aaaa_sl_sample_plugin_updater' );
 
@@ -118,7 +118,7 @@ function aaa_license_license_key_settings_field() {
 	$status  = get_option( 'aaa_license_license_status' );
 	$license_data  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA );
 	// $license_data_headers  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers' );
-	var_dump($license_data);
+	var_dump($license,$status,$license_data);
 	
 	?>
 	<p class="description"><?php esc_html_e( 'Enter your license key.' ); ?></p>
