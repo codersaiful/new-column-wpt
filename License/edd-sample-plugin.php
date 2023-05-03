@@ -4,11 +4,11 @@
 * For further details please visit http://docs.easydigitaldownloads.com/article/383-automatic-upgrades-for-wordpress-plugins
  */
 
- define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_ITEM_ID', 134 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
- define( 'EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
+ define( 'AAA_EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_ITEM_ID', 134 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
+ define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
  
 if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
 	// load our custom updater
@@ -32,12 +32,12 @@ function aaaa_sl_sample_plugin_updater() {
 
 	// setup the updater
 	$edd_updater = new EDD_SL_Plugin_Updater(
-		EDD_SAMPLE_STORE_URL,
-		EDD_SAMPLE_ITEM__FILE__,//__FILE__,
+		AAA_EDD_SAMPLE_STORE_URL,
+		AAA_EDD_SAMPLE_ITEM__FILE__,//__FILE__,
 		array(
 			'version' => '1.0.0',                    // current version number
 			'license' => $license_key,             // license key (used get_option above to retrieve from DB)
-			'item_id' => EDD_SAMPLE_ITEM_ID,       // ID of the product
+			'item_id' => AAA_EDD_SAMPLE_ITEM_ID,       // ID of the product
 			'author'  => 'Author Name', // author of this plugin
 			'beta'    => true,
 		)
@@ -64,7 +64,7 @@ function aaa_license_license_menu() {
 		__( 'Plugin License' ),
 		__( 'Plugin License' ),
 		'manage_options',
-		EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
+		AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
 		'aaa_license_license_page'
 	);
 }
@@ -75,13 +75,13 @@ function aaa_license_license_page() {
 		'aaa_license_license',
 		__( 'Plugin License' ),
 		'aaa_license_license_key_settings_section',
-		EDD_SAMPLE_PLUGIN_LICENSE_PAGE
+		AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE
 	);
 	add_settings_field(
 		'aaa_license_license_key',
 		'<label for="aaa_license_license_key">' . __( 'License Key' ) . '</label>',
 		'aaa_license_license_key_settings_field',
-		EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
+		AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
 		'aaa_license_license',
 	);
 	?>
@@ -90,7 +90,7 @@ function aaa_license_license_page() {
 		<form method="post" action="options.php">
 
 			<?php
-			do_settings_sections( EDD_SAMPLE_PLUGIN_LICENSE_PAGE );
+			do_settings_sections( AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE );
 			settings_fields( 'aaa_license_license' );
 			submit_button();
 			?>
@@ -116,8 +116,8 @@ function aaa_license_license_key_settings_section() {
 function aaa_license_license_key_settings_field() {
 	$license = get_option( 'aaa_license_license_key' );
 	$status  = get_option( 'aaa_license_license_status' );
-	$license_data  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA );
-	// $license_data_headers  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers' );
+	$license_data  = get_option( AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA );
+	// $license_data_headers  = get_option( AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers' );
 	var_dump($license,$status,$license_data);
 	
 	?>
@@ -198,15 +198,15 @@ function aaa_license_activate_license() {
 	$api_params = array(
 		'edd_action'  => 'activate_license',
 		'license'     => $license,
-		'item_id'     => EDD_SAMPLE_ITEM_ID,
-		'item_name'   => rawurlencode( EDD_SAMPLE_ITEM_NAME ), // the name of our product in EDD
+		'item_id'     => AAA_EDD_SAMPLE_ITEM_ID,
+		'item_name'   => rawurlencode( AAA_EDD_SAMPLE_ITEM_NAME ), // the name of our product in EDD
 		'url'         => home_url(),
 		'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 	);
 
 	// Call the custom API.
 	$response = wp_remote_post(
-		EDD_SAMPLE_STORE_URL,
+		AAA_EDD_SAMPLE_STORE_URL,
 		array(
 			'timeout'   => 15,
 			'sslverify' => false,
@@ -261,7 +261,7 @@ function aaa_license_activate_license() {
 
 				case 'item_name_mismatch':
 					/* translators: the plugin name */
-					$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'aaaaa' ), EDD_SAMPLE_ITEM_NAME );
+					$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'aaaaa' ), AAA_EDD_SAMPLE_ITEM_NAME );
 					break;
 
 				case 'no_activations_left':
@@ -279,7 +279,7 @@ function aaa_license_activate_license() {
 	if ( ! empty( $message ) ) {
 		$redirect = add_query_arg(
 			array(
-				'page'          => EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
+				'page'          => AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
 				'sl_activation' => 'false',
 				'message'       => rawurlencode( $message ),
 			),
@@ -295,9 +295,9 @@ function aaa_license_activate_license() {
 		update_option( 'aaa_license_license_key', $license );
 	}
 	update_option( 'aaa_license_license_status', $license_data->license );
-	update_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA, $license_data );
-	// update_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers', $license_data_headers );
-	wp_safe_redirect( admin_url( 'plugins.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
+	update_option( AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA, $license_data );
+	// update_option( AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA . '_headers', $license_data_headers );
+	wp_safe_redirect( admin_url( 'plugins.php?page=' . AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
 	exit();
 }
 add_action( 'admin_init', 'aaa_license_activate_license' );
@@ -325,15 +325,15 @@ function aaa_license_deactivate_license() {
 		$api_params = array(
 			'edd_action'  => 'deactivate_license',
 			'license'     => $license,
-			'item_id'     => EDD_SAMPLE_ITEM_ID,
-			'item_name'   => rawurlencode( EDD_SAMPLE_ITEM_NAME ), // the name of our product in EDD
+			'item_id'     => AAA_EDD_SAMPLE_ITEM_ID,
+			'item_name'   => rawurlencode( AAA_EDD_SAMPLE_ITEM_NAME ), // the name of our product in EDD
 			'url'         => home_url(),
 			'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 		);
 
 		// Call the custom API.
 		$response = wp_remote_post(
-			EDD_SAMPLE_STORE_URL,
+			AAA_EDD_SAMPLE_STORE_URL,
 			array(
 				'timeout'   => 15,
 				'sslverify' => false,
@@ -353,7 +353,7 @@ function aaa_license_deactivate_license() {
 
 			$redirect = add_query_arg(
 				array(
-					'page'          => EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
+					'page'          => AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
 					'sl_activation' => 'false',
 					'message'       => rawurlencode( $message ),
 				),
@@ -372,7 +372,7 @@ function aaa_license_deactivate_license() {
 			delete_option( 'aaa_license_license_status' );
 		}
 
-		wp_safe_redirect( admin_url( 'plugins.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
+		wp_safe_redirect( admin_url( 'plugins.php?page=' . AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
 		exit();
 
 	}
@@ -394,15 +394,15 @@ function aaa_license_check_license() {
 	$api_params = array(
 		'edd_action'  => 'check_license',
 		'license'     => $license,
-		'item_id'     => EDD_SAMPLE_ITEM_ID,
-		'item_name'   => rawurlencode( EDD_SAMPLE_ITEM_NAME ),
+		'item_id'     => AAA_EDD_SAMPLE_ITEM_ID,
+		'item_name'   => rawurlencode( AAA_EDD_SAMPLE_ITEM_NAME ),
 		'url'         => home_url(),
 		'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 	);
 
 	// Call the custom API.
 	$response = wp_remote_post(
-		EDD_SAMPLE_STORE_URL,
+		AAA_EDD_SAMPLE_STORE_URL,
 		array(
 			'timeout'   => 15,
 			'sslverify' => false,
