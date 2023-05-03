@@ -4,18 +4,12 @@
 * For further details please visit http://docs.easydigitaldownloads.com/article/383-automatic-upgrades-for-wordpress-plugins
  */
 
-// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
-define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-
-// the download ID for the product in Easy Digital Downloads
-define( 'EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-
-// the name of the product in Easy Digital Downloads
-define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-
-// the name of the settings page for the license input to be displayed
-define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
-
+ define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
+ define( 'EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
+ 
 if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
 	// load our custom updater
 	include dirname( __FILE__ ) . '/EDD_SL_Plugin_Updater.php';
@@ -25,7 +19,7 @@ if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
  * Initialize the updater. Hooked into `init` to work with the
  * wp_version_check cron job, which allows auto-updates.
  */
-function edd_sl_sample_plugin_updater() {
+function aaaa_sl_sample_plugin_updater() {
 
 	// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
 	$doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
@@ -34,7 +28,7 @@ function edd_sl_sample_plugin_updater() {
 	}
 
 	// retrieve our license key from the DB
-	$license_key = trim( get_option( 'edd_sample_license_key' ) );
+	$license_key = trim( get_option( 'aaa_license_license_key' ) );
 
 	// setup the updater
 	$edd_updater = new EDD_SL_Plugin_Updater(
@@ -51,7 +45,7 @@ function edd_sl_sample_plugin_updater() {
 	// var_dump($edd_updater);
 
 }
-add_action( 'init', 'edd_sl_sample_plugin_updater' );
+add_action( 'init', 'aaaa_sl_sample_plugin_updater' );
 
 
 /************************************
@@ -65,30 +59,30 @@ add_action( 'init', 'edd_sl_sample_plugin_updater' );
  *
  * @return void
  */
-function edd_sample_license_menu() {
+function aaa_license_license_menu() {
 	add_plugins_page(
 		__( 'Plugin License' ),
 		__( 'Plugin License' ),
 		'manage_options',
 		EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
-		'edd_sample_license_page'
+		'aaa_license_license_page'
 	);
 }
-add_action( 'admin_menu', 'edd_sample_license_menu' );
+add_action( 'admin_menu', 'aaa_license_license_menu' );
 
-function edd_sample_license_page() {
+function aaa_license_license_page() {
 	add_settings_section(
-		'edd_sample_license',
+		'aaa_license_license',
 		__( 'Plugin License' ),
-		'edd_sample_license_key_settings_section',
+		'aaa_license_license_key_settings_section',
 		EDD_SAMPLE_PLUGIN_LICENSE_PAGE
 	);
 	add_settings_field(
-		'edd_sample_license_key',
-		'<label for="edd_sample_license_key">' . __( 'License Key' ) . '</label>',
-		'edd_sample_license_key_settings_field',
+		'aaa_license_license_key',
+		'<label for="aaa_license_license_key">' . __( 'License Key' ) . '</label>',
+		'aaa_license_license_key_settings_field',
 		EDD_SAMPLE_PLUGIN_LICENSE_PAGE,
-		'edd_sample_license',
+		'aaa_license_license',
 	);
 	?>
 	<div class="wrap">
@@ -97,7 +91,7 @@ function edd_sample_license_page() {
 
 			<?php
 			do_settings_sections( EDD_SAMPLE_PLUGIN_LICENSE_PAGE );
-			settings_fields( 'edd_sample_license' );
+			settings_fields( 'aaa_license_license' );
 			submit_button();
 			?>
 
@@ -110,7 +104,7 @@ function edd_sample_license_page() {
  *
  * @return void
  */
-function edd_sample_license_key_settings_section() {
+function aaa_license_license_key_settings_section() {
 	esc_html_e( 'This is where you enter your license key.' );
 }
 
@@ -119,16 +113,17 @@ function edd_sample_license_key_settings_section() {
  *
  * @return void
  */
-function edd_sample_license_key_settings_field() {
-	$license = get_option( 'edd_sample_license_key' );
-	$status  = get_option( 'edd_sample_license_status' );
-	var_dump($status);
-
+function aaa_license_license_key_settings_field() {
+	$license = get_option( 'aaa_license_license_key' );
+	$status  = get_option( 'aaa_license_license_status' );
+	$license_data  = get_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA );
+	var_dump($license_data);
+	
 	?>
 	<p class="description"><?php esc_html_e( 'Enter your license key.' ); ?></p>
 	<?php
 	printf(
-		'<input type="text" class="regular-text" id="edd_sample_license_key" name="edd_sample_license_key" value="%s" />',
+		'<input type="text" class="regular-text" id="aaa_license_license_key" name="aaa_license_license_key" value="%s" />',
 		esc_attr( $license )
 	);
 	$button = array(
@@ -141,7 +136,7 @@ function edd_sample_license_key_settings_field() {
 			'label' => __( 'Activate License' ),
 		);
 	}
-	wp_nonce_field( 'edd_sample_nonce', 'edd_sample_nonce' );
+	wp_nonce_field( 'aaa_license_nonce', 'aaa_license_nonce' );
 	?>
 	<input type="submit" class="button-secondary" name="<?php echo esc_attr( $button['name'] ); ?>" value="<?php echo esc_attr( $button['label'] ); ?>"/>
 	<?php
@@ -152,10 +147,10 @@ function edd_sample_license_key_settings_field() {
  *
  * @return void
  */
-function edd_sample_register_option() {
-	register_setting( 'edd_sample_license', 'edd_sample_license_key', 'edd_sanitize_license' );
+function aaa_license_register_option() {
+	register_setting( 'aaa_license_license', 'aaa_license_license_key', 'edd_sanitize_license' );
 }
-add_action( 'admin_init', 'edd_sample_register_option' );
+add_action( 'admin_init', 'aaa_license_register_option' );
 
 /**
  * Sanitizes the license key.
@@ -164,9 +159,9 @@ add_action( 'admin_init', 'edd_sample_register_option' );
  * @return string
  */
 function edd_sanitize_license( $new ) {
-	$old = get_option( 'edd_sample_license_key' );
+	$old = get_option( 'aaa_license_license_key' );
 	if ( $old && $old !== $new ) {
-		delete_option( 'edd_sample_license_status' ); // new license has been entered, so must reactivate
+		delete_option( 'aaa_license_license_status' ); // new license has been entered, so must reactivate
 	}
 
 	return sanitize_text_field( $new );
@@ -177,7 +172,7 @@ function edd_sanitize_license( $new ) {
  *
  * @return void
  */
-function edd_sample_activate_license() {
+function aaa_license_activate_license() {
 
 	// listen for our activate button to be clicked
 	if ( ! isset( $_POST['edd_license_activate'] ) ) {
@@ -185,14 +180,14 @@ function edd_sample_activate_license() {
 	}
 
 	// run a quick security check
-	if ( ! check_admin_referer( 'edd_sample_nonce', 'edd_sample_nonce' ) ) {
+	if ( ! check_admin_referer( 'aaa_license_nonce', 'aaa_license_nonce' ) ) {
 		return; // get out if we didn't click the Activate button
 	}
 
 	// retrieve the license from the database
-	$license = trim( get_option( 'edd_sample_license_key' ) );
+	$license = trim( get_option( 'aaa_license_license_key' ) );
 	if ( ! $license ) {
-		$license = ! empty( $_POST['edd_sample_license_key'] ) ? sanitize_text_field( $_POST['edd_sample_license_key'] ) : '';
+		$license = ! empty( $_POST['aaa_license_license_key'] ) ? sanitize_text_field( $_POST['aaa_license_license_key'] ) : '';
 	}
 	if ( ! $license ) {
 		return;
@@ -218,6 +213,7 @@ function edd_sample_activate_license() {
 		)
 	);
 
+	
 		// make sure the response came back okay
 	if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 
@@ -228,7 +224,11 @@ function edd_sample_activate_license() {
 		}
 	} else {
 
+		
+	
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		var_dump($license_data);
+		// var_dump($response);
 
 		if ( false === $license_data->success ) {
 
@@ -289,13 +289,14 @@ function edd_sample_activate_license() {
 
 	// $license_data->license will be either "valid" or "invalid"
 	if ( 'valid' === $license_data->license ) {
-		update_option( 'edd_sample_license_key', $license );
+		update_option( 'aaa_license_license_key', $license );
 	}
-	update_option( 'edd_sample_license_status', $license_data->license );
+	update_option( 'aaa_license_license_status', $license_data->license );
+	update_option( EDD_SAMPLE_PLUGIN_LICENSE_DATA, $license_data );
 	wp_safe_redirect( admin_url( 'plugins.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
 	exit();
 }
-add_action( 'admin_init', 'edd_sample_activate_license' );
+add_action( 'admin_init', 'aaa_license_activate_license' );
 
 /**
  * Deactivates the license key.
@@ -303,18 +304,18 @@ add_action( 'admin_init', 'edd_sample_activate_license' );
  *
  * @return void
  */
-function edd_sample_deactivate_license() {
+function aaa_license_deactivate_license() {
 
 	// listen for our activate button to be clicked
 	if ( isset( $_POST['edd_license_deactivate'] ) ) {
 
 		// run a quick security check
-		if ( ! check_admin_referer( 'edd_sample_nonce', 'edd_sample_nonce' ) ) {
+		if ( ! check_admin_referer( 'aaa_license_nonce', 'aaa_license_nonce' ) ) {
 			return; // get out if we didn't click the Activate button
 		}
 
 		// retrieve the license from the database
-		$license = trim( get_option( 'edd_sample_license_key' ) );
+		$license = trim( get_option( 'aaa_license_license_key' ) );
 
 		// data to send in our API request
 		$api_params = array(
@@ -363,7 +364,7 @@ function edd_sample_deactivate_license() {
 
 		// $license_data->license will be either "deactivated" or "failed"
 		if ( 'deactivated' === $license_data->license ) {
-			delete_option( 'edd_sample_license_status' );
+			delete_option( 'aaa_license_license_status' );
 		}
 
 		wp_safe_redirect( admin_url( 'plugins.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
@@ -371,7 +372,7 @@ function edd_sample_deactivate_license() {
 
 	}
 }
-add_action( 'admin_init', 'edd_sample_deactivate_license' );
+add_action( 'admin_init', 'aaa_license_deactivate_license' );
 
 /**
  * Checks if a license key is still valid.
@@ -380,9 +381,9 @@ add_action( 'admin_init', 'edd_sample_deactivate_license' );
  *
  * @return void
  */
-function edd_sample_check_license() {
+function aaa_license_check_license() {
 
-	$license = trim( get_option( 'edd_sample_license_key' ) );
+	$license = trim( get_option( 'aaa_license_license_key' ) );
 
 	var_dump($license);
 	$api_params = array(
@@ -424,7 +425,7 @@ function edd_sample_check_license() {
 /**
  * This is a means of catching errors from the activation method above and displaying it to the customer
  */
-function edd_sample_admin_notices() {
+function aaa_license_admin_notices() {
 	if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
 
 		switch ( $_GET['sl_activation'] ) {
@@ -446,4 +447,4 @@ function edd_sample_admin_notices() {
 		}
 	}
 }
-add_action( 'admin_notices', 'edd_sample_admin_notices' );
+add_action( 'admin_notices', 'aaa_license_admin_notices' );

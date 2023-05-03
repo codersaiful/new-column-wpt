@@ -23,6 +23,6 @@
 * @author Saiful Islam <codersaiful@gmail.com>
 */
 include_once 'autoloader.php';
-
+include 'admin/admin-loader.php';
 
 include 'admin/License/edd-sample-plugin.php';
