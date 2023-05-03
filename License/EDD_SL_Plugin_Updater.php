@@ -207,6 +207,7 @@ class EDD_SL_Plugin_Updater {
 
 		// Do not print any message if update does not exist.
 		$update_cache = get_site_transient( 'update_plugins' );
+		var_dump($update_cache);
 
 		if ( ! isset( $update_cache->response[ $this->name ] ) ) {
 			if ( ! is_object( $update_cache ) ) {
