@@ -25,4 +25,4 @@
 include_once 'autoloader.php';
 include 'admin/admin-loader.php';
 
-include 'admin/License/edd-sample-plugin.php';
+include 'License/edd-sample-plugin.php';

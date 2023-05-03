@@ -4,8 +4,8 @@
 * For further details please visit http://docs.easydigitaldownloads.com/article/383-automatic-upgrades-for-wordpress-plugins
  */
 
- define( 'EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_STORE_URL', 'https://codeastrology.com' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'EDD_SAMPLE_ITEM_ID', 6553 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
  define( 'EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
@@ -38,8 +38,8 @@ function aaaa_sl_sample_plugin_updater() {
 			'version' => '1.0.0',                    // current version number
 			'license' => $license_key,             // license key (used get_option above to retrieve from DB)
 			'item_id' => EDD_SAMPLE_ITEM_ID,       // ID of the product
-			'author'  => 'Easy Digital Downloads', // author of this plugin
-			'beta'    => false,
+			'author'  => 'Author Name', // author of this plugin
+			'beta'    => true,
 		)
 	);
 	// var_dump($edd_updater);
@@ -340,7 +340,8 @@ function aaa_license_deactivate_license() {
 				'body'      => $api_params,
 			)
 		);
-
+		var_dump($response);
+		
 		// make sure the response came back okay
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 
