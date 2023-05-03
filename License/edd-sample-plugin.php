@@ -240,36 +240,36 @@ function aaa_license_activate_license() {
 				case 'expired':
 					$message = sprintf(
 						/* translators: the license key expiration date */
-						__( 'Your license key expired on %s.', 'edd-sample-plugin' ),
+						__( 'Your license key expired on %s.', 'aaaaa' ),
 						date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
 					);
 					break;
 
 				case 'disabled':
 				case 'revoked':
-					$message = __( 'Your license key has been disabled.', 'edd-sample-plugin' );
+					$message = __( 'Your license key has been disabled.', 'aaaaa' );
 					break;
 
 				case 'missing':
-					$message = __( 'Invalid license.', 'edd-sample-plugin' );
+					$message = __( 'Invalid license.', 'aaaaa' );
 					break;
 
 				case 'invalid':
 				case 'site_inactive':
-					$message = __( 'Your license is not active for this URL.', 'edd-sample-plugin' );
+					$message = __( 'Your license is not active for this URL.', 'aaaaa' );
 					break;
 
 				case 'item_name_mismatch':
 					/* translators: the plugin name */
-					$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'edd-sample-plugin' ), EDD_SAMPLE_ITEM_NAME );
+					$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'aaaaa' ), EDD_SAMPLE_ITEM_NAME );
 					break;
 
 				case 'no_activations_left':
-					$message = __( 'Your license key has reached its activation limit.', 'edd-sample-plugin' );
+					$message = __( 'Your license key has reached its activation limit.', 'aaaaa' );
 					break;
 
 				default:
-					$message = __( 'An error occurred, please try again.', 'edd-sample-plugin' );
+					$message = __( 'An error occurred, please try again.', 'aaaaa' );
 					break;
 			}
 		}
