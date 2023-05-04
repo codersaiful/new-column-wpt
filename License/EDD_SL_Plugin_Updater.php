@@ -47,7 +47,7 @@ class EDD_SL_Plugin_Updater {
 		$this->beta                     = ! empty( $this->api_data['beta'] ) ? true : false;
 		$this->failed_request_cache_key = 'edd_sl_failed_http_' . md5( $this->api_url );
 
-		$edd_plugin_data[ $this->slug ] = $this->api_data;
+		$edd_plugin_data[$this->slug] = $this->api_data;
 
 		/**
 		 * Fires after the $edd_plugin_data is setup.
@@ -58,6 +58,7 @@ class EDD_SL_Plugin_Updater {
 		 */
 		do_action( 'post_edd_sl_plugin_updater_setup', $edd_plugin_data );
 
+		// var_dump($edd_plugin_data);
 		// Set up hooks.
 		$this->init();
 
@@ -105,7 +106,7 @@ class EDD_SL_Plugin_Updater {
 		}
 
 		$current = $this->get_repo_api_data();
-		// var_dump($current);
+
 		if ( false !== $current && is_object( $current ) && isset( $current->new_version ) ) {
 			if ( version_compare( $this->version, $current->new_version, '<' ) ) {
 				$_transient_data->response[ $this->name ] = $current;
@@ -256,7 +257,7 @@ class EDD_SL_Plugin_Updater {
 
 		printf(
 			/* translators: the plugin name. */
-			esc_html__( 'There is a new version of %1$s available.', 'easy-digital-downloads' ),
+			esc_html__( 'AAAAAAThere is a new version of %1$s available.', 'easy-digital-downloads' ),
 			esc_html( $plugin['Name'] )
 		);
 
