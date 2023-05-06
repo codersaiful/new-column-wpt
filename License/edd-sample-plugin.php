@@ -128,12 +128,12 @@ function aaa_license_license_key_settings_field() {
 		esc_attr( $license )
 	);
 	$button = array(
-		'name'  => 'edd_license_deactivate',
+		'name'  => 'aaa_edd_license_deactivate',
 		'label' => __( 'Deactivate License' ),
 	);
 	if ( 'valid' !== $status ) {
 		$button = array(
-			'name'  => 'edd_license_activate',
+			'name'  => 'aaa_edd_license_activate',
 			'label' => __( 'Activate License' ),
 		);
 	}
@@ -176,7 +176,7 @@ function aaa_edd_sanitize_license( $new ) {
 function aaa_license_activate_license() {
 
 	// listen for our activate button to be clicked
-	if ( ! isset( $_POST['edd_license_activate'] ) ) {
+	if ( ! isset( $_POST['aaa_edd_license_activate'] ) ) {
 		return;
 	}
 
@@ -309,9 +309,9 @@ add_action( 'admin_init', 'aaa_license_activate_license' );
  * @return void
  */
 function aaa_license_deactivate_license() {
-
+	// var_dump('sample-edd',$_POST);
 	// listen for our activate button to be clicked
-	if ( isset( $_POST['edd_license_deactivate'] ) ) {
+	if ( isset( $_POST['aaa_edd_license_deactivate'] ) ) {
 
 		// run a quick security check
 		if ( ! check_admin_referer( 'aaa_license_nonce', 'aaa_license_nonce' ) ) {
