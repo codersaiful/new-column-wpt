@@ -5,7 +5,7 @@
  */
 
  define( 'AAA_EDD_SAMPLE_STORE_URL', 'https://staging19.codeastrology.com/' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'AAA_EDD_SAMPLE_ITEM_ID', 12854 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_ITEM_ID', 12858 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'AAA_EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
  define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
