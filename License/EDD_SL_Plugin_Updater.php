@@ -41,7 +41,7 @@ class EDD_SL_Plugin_Updater {
 		$this->api_data                 = $_api_data;
 		$this->plugin_file              = $_plugin_file;
 		$this->name                     = plugin_basename( $_plugin_file );
-		$this->slug                     = $this->name;//basename( $_plugin_file, '.php' );
+		$this->slug                     = plugin_basename( dirname( $_plugin_file ) );//$this->name;//basename( $_plugin_file, '.php' );
 		$this->version                  = $_api_data['version'];
 		$this->wp_override              = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 		$this->beta                     = ! empty( $this->api_data['beta'] ) ? true : false;

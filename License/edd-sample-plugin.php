@@ -4,8 +4,8 @@
 * For further details please visit http://docs.easydigitaldownloads.com/article/383-automatic-upgrades-for-wordpress-plugins
  */
 
- define( 'AAA_EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
- define( 'AAA_EDD_SAMPLE_ITEM_ID', 134 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_STORE_URL', 'https://staging19.codeastrology.com/' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
+ define( 'AAA_EDD_SAMPLE_ITEM_ID', 12854 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'AAA_EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
  define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
  define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_DATA', 'aaa_license_license_data' );
@@ -340,7 +340,7 @@ function aaa_license_deactivate_license() {
 				'body'      => $api_params,
 			)
 		);
-		var_dump($response);
+		// var_dump($response);
 		
 		// make sure the response came back okay
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -390,7 +390,7 @@ function aaa_license_check_license() {
 
 	$license = trim( get_option( 'aaa_license_license_key' ) );
 
-	var_dump($license);
+	// var_dump($license);
 	$api_params = array(
 		'edd_action'  => 'check_license',
 		'license'     => $license,
