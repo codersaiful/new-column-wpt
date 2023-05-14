@@ -23,7 +23,11 @@
 * @author Saiful Islam <codersaiful@gmail.com>
 */
 define( 'AAA_EDD_SAMPLE_ITEM__FILE__', __FILE__ );
+define( 'AAA_EDD_SAMPLE_VERSION', '1.0.0' );
 // include_once 'autoloader.php';
-include 'admin/admin-loader.php';
 
-include 'License/edd-sample-plugin.php';
+add_action( 'plugins_loaded', 'aaa_test_lincne_func' );
+function aaa_test_lincne_func(){
+    include 'autoloader.php';
+    $aaa = new Test_AAAA\License\Init();
+}

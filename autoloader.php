@@ -1,6 +1,6 @@
 <?php
 
-namespace WOO_PRODUCT_TABLE_PRO;
+namespace Test_AAAA;
 
 defined('ABSPATH') || exit;
 

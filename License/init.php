@@ -1,9 +1,84 @@
 <?php
+namespace Test_AAAA\License;
 
-//sample key of edd.cm 8a931bf76cdeba8e98be926719e0e675
-//sample key of edd.cm 83311341f801de99bcf9164980717c40 
-// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
-// define( 'AAA_EDD_SAMPLE_STORE_URL', 'http://edd.cm' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-// define( 'AAA_EDD_SAMPLE_ITEM_ID', 102 ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-// define( 'AAA_EDD_SAMPLE_ITEM_NAME', 'A A A EDD License Test' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
-// define( 'AAA_EDD_SAMPLE_PLUGIN_LICENSE_PAGE', 'aaa-sample-edd-license' );
+use \CodeAstrology_License\Manage as License_Manage;
+
+
+if ( ! class_exists('\CodeAstrology_License\Plugin_Updater') ) {
+	// load our custom updater
+	include dirname( __FILE__ ) . '/resource/updater.php';
+}
+
+if ( ! class_exists( 'CodeAstrology_License\Manage' ) ) {
+	// load our custom updater
+	include dirname( __FILE__ ) . '/resource/manage.php';
+}
+
+
+
+class Init
+{
+
+    //Most Important, It's Obvously should change, Otherwise conflict
+    public $prefix = 'aaa';
+
+    public $item_id = 12858;//6553;
+    public $item_name = 'AAA Test Addons';
+    public $help_url = 'https://wooproducttable.com/docs/';
+
+    public $plugin_root_file = AAA_EDD_SAMPLE_ITEM__FILE__; //Need plugin's main root file data of __FILE__.
+    public $plugin_version = AAA_EDD_SAMPLE_VERSION;//current version of plugin
+
+    public $page_title = 'License';
+
+    public $page_slug = 'aaa-licnese-page';//'wpt-addons-simple-variaton'; //'woo-product-table-license';
+    public $parent_page = 'edit.php?post_type=wpt_product_table';
+
+    //specially for redirection
+    public $license_page_link = 'edit.php?post_type=wpt_product_table&page=aaa-licnese-page';
+
+
+    //Static but Dynamic (No need change)
+    public $store_url = 'https://staging19.codeastrology.com/'; //https://codeastrology.com/
+    public $author_name = 'CodeAstrology Team';
+    public $permission = 'manage_options';//Manage or edit permission
+
+    /**
+     * Following two property
+     * $parent_addon_prefix
+     * And
+     * $parent_exists_class
+     * Only need, If you create child addon for any main addon.
+     * Otherwise, add as null
+     *
+     * @var string
+     */
+    public $parent_addon_prefix = 'wpt';
+    public $parent_exists_class = 'WOO_Product_Table';
+
+
+    public $license_root_file = __FILE__;
+    public $license_data_key;
+    public function __construct()
+    {
+
+        $this->license_data_key = $this->prefix . '_license_data';
+        $this->license_page_link = admin_url( $this->license_page_link );
+        
+        // $manage = new License_Manage($this, '_pro'); 
+
+        $manage = new License_Manage($this);
+
+        // $this->prefix = "saiful";
+        // $this->license_data_key = $this->prefix . '_license_data';
+        // $this->license_page_link = admin_url( $this->license_page_link );
+        // $manage = new License_Manage($this);
+        
+
+        //If Need
+        //$manage->get_live_license_data(); //Getting licens data
+        //$manage->get_live_license_status(); //Getting licens data Live
+        //8.2.2.9.test_license_for_addon
+        return $manage;
+    }
+}
